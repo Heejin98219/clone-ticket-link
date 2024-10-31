@@ -2,8 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
-// 폰트어썸 아이콘 스타일
-const GoUpBtn = styled.button`
+// 올라가기 버튼
+const ScrollUpBtn = styled.button`
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -21,13 +21,12 @@ const FocusOnTop = () => {
   });
 };
 
-// 폰트어썸 아이콘 적용
-const AutoGoUp = () => {
+const AutoScrollUp = () => {
   return (
-    <GoUpBtn onClick={FocusOnTop}>
+    <ScrollUpBtn onClick={FocusOnTop}>
       <FontAwesomeIcon icon={faArrowUp} size="xl" />
-    </GoUpBtn>
+    </ScrollUpBtn>
   );
 };
 
-export default AutoGoUp;
+export default AutoScrollUp;
