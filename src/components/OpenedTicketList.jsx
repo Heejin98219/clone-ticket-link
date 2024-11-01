@@ -54,7 +54,7 @@ const TicketTime = styled.p`
   font-size: 14px;
 `;
 
-const OpenTicketList = () => {
+const OpenedTicketList = () => {
   return (
     <div>
       <TicketOpenListTopBar>
@@ -109,4 +109,4 @@ const OpenTicketList = () => {
   );
 };
 
-export default OpenTicketList;
+export default OpenedTicketList;

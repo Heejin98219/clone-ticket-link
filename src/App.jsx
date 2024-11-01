@@ -1,7 +1,7 @@
 import Footer from "./components/CopyRightAndSns";
-import OpenTicketList from "./components/OpenTicketList";
+import OpenedTicketList from "./components/OpenedTicketList";
 import AutoScrollUp from "./components/AutoScrollUp";
-import LogoImage from "./components/LogoImage";
+import TicketLinkLogo from "./components/TicketLinkLogo";
 import styled from "styled-components";
 
 // 모든 컴포넌트 중앙 정렬
@@ -13,11 +13,9 @@ const MakeDivPlaceCenter = styled.div`
 const App = () => {
   return (
     <MakeDivPlaceCenter>
-      {/* 로고 이미지*/}
-      <LogoImage />
-      <OpenTicketList />
+      <TicketLinkLogo />
+      <OpenedTicketList />
       <AutoScrollUp />
-      {/* <Copyright /> */}
       <Footer />
     </MakeDivPlaceCenter>
   );
