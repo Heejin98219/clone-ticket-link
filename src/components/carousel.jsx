@@ -1,5 +1,9 @@
 const carousel = () => {
-  return <div></div>;
+  return (
+    <div>
+      <div>{}</div>
+    </div>
+  );
 };
 
 export default carousel;
