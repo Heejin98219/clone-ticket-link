@@ -4,7 +4,6 @@ import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-
 import styled from "styled-components";
 
 // 저작권 + sns 로고
@@ -20,8 +19,8 @@ const CopyRightText = styled.div`
   width: 50%;
   margin: 0 auto;
   text-align: center;
-  /* color: #aaa; 위 좌우 밑 */
-  padding-top: 3rem;
+  /* color: #ccc; 위 좌우 밑 */
+  padding-top: 7rem;
 `;
 
 // sns 아이콘 전체를 감싸는 div
@@ -33,7 +32,9 @@ const SnsIconsDiv = styled.div`
 `;
 
 // sns 아이콘 각각을 감싸는 div
-const SnsIconDiv = styled.div`
+// fontawesome 자체에 Link태그를
+// 넣을 수 없기 때문에 a태그를 사용
+const SnsIconDiv = styled.a`
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -44,11 +45,12 @@ const SnsIconDiv = styled.div`
   color: white;
 `;
 
+// sns 아이콘 전체를 감싸는 div
 const SnsIcons = styled.div`
   display: flex;
   justify-content: space-between;
   width: 270px;
-  margin-top: 70px;
+  margin-top: 200px;
   cursor: pointer;
 `;
 
@@ -60,20 +62,19 @@ const Footer = () => {
       </CopyRightText>
       <SnsIconsDiv>
         <SnsIcons>
-          <SnsIconDiv>
+          <SnsIconDiv href="https://blog.naver.com/t_link">
             <FontAwesomeIcon icon={faMessage} size="xl" />
           </SnsIconDiv>
-          <SnsIconDiv>
-            {/* {" "} */}
+          <SnsIconDiv href="https://www.youtube.com/@ticketlink012">
             <FontAwesomeIcon icon={faYoutube} size="xl" />
           </SnsIconDiv>
-          <SnsIconDiv>
+          <SnsIconDiv href="https://www.facebook.com/ticketlink">
             <FontAwesomeIcon icon={faFacebook} size="xl" />
           </SnsIconDiv>
-          <SnsIconDiv>
+          <SnsIconDiv href="https://www.instagram.com/ticketlink.co.kr/">
             <FontAwesomeIcon icon={faSquareInstagram} size="xl" />
           </SnsIconDiv>
-          <SnsIconDiv>
+          <SnsIconDiv href="https://x.com/nhn_ticketlink">
             <FontAwesomeIcon icon={faXTwitter} size="xl" />
           </SnsIconDiv>
         </SnsIcons>

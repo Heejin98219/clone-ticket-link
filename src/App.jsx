@@ -1,4 +1,4 @@
-import Footer from "./components/Footer";
+import Footer from "./components/CopyRightAndSns";
 import OpenTicketList from "./components/OpenTicketList";
 import AutoScrollUp from "./components/AutoScrollUp";
 import LogoImage from "./components/LogoImage";
@@ -8,7 +8,6 @@ import styled from "styled-components";
 const MakeDivPlaceCenter = styled.div`
   margin: 0 auto;
   width: 1500px;
-  border: 1px solid red;
 `;
 
 const App = () => {
@@ -16,7 +15,6 @@ const App = () => {
     <MakeDivPlaceCenter>
       {/* 로고 이미지*/}
       <LogoImage />
-
       <OpenTicketList />
       <AutoScrollUp />
       {/* <Copyright /> */}

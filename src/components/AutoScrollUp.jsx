@@ -27,9 +27,18 @@ const ScrollUpBtn = styled.button`
 const AutoScrollUp = () => {
   return (
     <ScrollUpBtnDiv>
-      <ScrollUpBtn onClick={GoToTop}>
-        <FontAwesomeIcon icon={faArrowUp} size="xl" />
-      </ScrollUpBtn>
+      <div
+        style={{
+          height: "70px",
+          position: "fixed",
+          bottom: "2%",
+          right: "3%",
+        }}
+      >
+        <ScrollUpBtn onClick={GoToTop}>
+          <FontAwesomeIcon icon={faArrowUp} size="xl" />
+        </ScrollUpBtn>
+      </div>
     </ScrollUpBtnDiv>
   );
 };
