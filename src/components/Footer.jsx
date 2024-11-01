@@ -9,11 +9,10 @@ import styled from "styled-components";
 
 // 저작권 + sns 로고
 const FooterDiv = styled.div`
-  width: 1390px;
   display: flex;
   margin-top: 15rem;
-  border: 3px solid pink;
-  padding-bottom: 3rem;
+  /* border-top: 3px solid black; */
+  border-width: 0 0 3px 3px;
 `;
 
 // 저작권 문구
@@ -21,14 +20,36 @@ const CopyRightText = styled.div`
   width: 50%;
   margin: 0 auto;
   text-align: center;
-  color: #aaa;
-  padding-top: 2rem;
+  /* color: #aaa; 위 좌우 밑 */
+  padding-top: 3rem;
 `;
 
-// sns 아이콘 감싸는 div
+// sns 아이콘 전체를 감싸는 div
 const SnsIconsDiv = styled.div`
   width: 50%;
-  border: 3px solid green;
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem;
+`;
+
+// sns 아이콘 각각을 감싸는 div
+const SnsIconDiv = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+`;
+
+const SnsIcons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 270px;
+  margin-top: 70px;
+  cursor: pointer;
 `;
 
 const Footer = () => {
@@ -38,11 +59,24 @@ const Footer = () => {
         Copyright © NHN LINK Corporation. All rights reserved.
       </CopyRightText>
       <SnsIconsDiv>
-        <FontAwesomeIcon icon={faMessage} size="xl" />
-        <FontAwesomeIcon icon={faYoutube} size="xl" />
-        <FontAwesomeIcon icon={faFacebook} size="xl" />
-        <FontAwesomeIcon icon={faSquareInstagram} size="xl" />
-        <FontAwesomeIcon icon={faXTwitter} size="xl" />
+        <SnsIcons>
+          <SnsIconDiv>
+            <FontAwesomeIcon icon={faMessage} size="xl" />
+          </SnsIconDiv>
+          <SnsIconDiv>
+            {/* {" "} */}
+            <FontAwesomeIcon icon={faYoutube} size="xl" />
+          </SnsIconDiv>
+          <SnsIconDiv>
+            <FontAwesomeIcon icon={faFacebook} size="xl" />
+          </SnsIconDiv>
+          <SnsIconDiv>
+            <FontAwesomeIcon icon={faSquareInstagram} size="xl" />
+          </SnsIconDiv>
+          <SnsIconDiv>
+            <FontAwesomeIcon icon={faXTwitter} size="xl" />
+          </SnsIconDiv>
+        </SnsIcons>
       </SnsIconsDiv>
     </FooterDiv>
   );

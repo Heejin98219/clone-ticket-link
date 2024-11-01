@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 // '티켓오픈', '전체 보기' 텍스트
 const TicketOpenListTopBar = styled.div`
-  /* border: 1px solid green; */
   width: 1390px;
   margin: 0 auto;
 `;
@@ -43,7 +42,16 @@ const ImgDiv = styled.ul`
 
 // 티켓명
 const TicketName = styled.p`
-  margin-top: 3px;
+  margin-top: 5px;
+  font-size: 16px;
+`;
+
+// 티켓 (예매)시간
+const TicketTime = styled.p`
+  margin-top: 5px;
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
 `;
 
 const OpenTicketList = () => {
@@ -59,27 +67,42 @@ const OpenTicketList = () => {
         <div>
           <TicketImg src="/image/InfiniteFirstImg.jpg" />
           <br />
-          <TicketName>INFINITE 15th Anniversary ...</TicketName>
+          <TicketName>
+            INFINITE 15th Anniversary ...
+            <TicketTime>06.09&#40;화&#41; 20:00</TicketTime>
+          </TicketName>
         </div>
         <div>
           <TicketImg src="/image/InfiniteSecondImg.jpg" />
           <br />
-          <TicketName>INFINITE 무한대집회 IV</TicketName>
+          <TicketName>
+            INFINITE 무한대집회 IV
+            <TicketTime>08.17&#40;금&#41; 20:00</TicketTime>
+          </TicketName>
         </div>
         <div>
           <TicketImg src="/image/InfiniteThirdImg.png" />
           <br />
-          <TicketName>INFINITE COMBACK AGAIN</TicketName>
+          <TicketName>
+            INFINITE COMBACK AGAIN
+            <TicketTime>02.12&#40;수&#41; 20:00</TicketTime>
+          </TicketName>
         </div>
         <div>
           <TicketImg src="/image/InfiniteFourthImg.jpg" />
           <br />
-          <TicketName>INFINITE One Great Step R...</TicketName>
+          <TicketName>
+            INFINITE One Great Step R...
+            <TicketTime>05.15&#40;월&#41; 20:00</TicketTime>
+          </TicketName>
         </div>
         <div>
           <TicketImg src="/image/InfiniteFifthImg.jpg" />
           <br />
-          <TicketName>&#91;단독판매&#93; JANGDONGWO...</TicketName>
+          <TicketName>
+            &#91;단독판매&#93; JANGDONGWO...
+            <TicketTime>12.06&#40;목&#41; 20:00</TicketTime>
+          </TicketName>
         </div>
       </ImgDiv>
     </div>
