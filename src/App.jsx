@@ -3,6 +3,7 @@ import OpenedTicketList from "./components/OpenedTicketList";
 import AutoScrollUp from "./components/AutoScrollUp";
 import TicketLinkLogo from "./components/TicketLinkLogo";
 import styled from "styled-components";
+import TopBar from "./components/TopBar";
 
 // 모든 컴포넌트 중앙 정렬
 const MakeDivPlaceCenter = styled.div`
@@ -13,6 +14,7 @@ const MakeDivPlaceCenter = styled.div`
 const App = () => {
   return (
     <MakeDivPlaceCenter>
+      <TopBar />
       <TicketLinkLogo />
       <OpenedTicketList />
       <AutoScrollUp />

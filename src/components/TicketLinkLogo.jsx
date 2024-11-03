@@ -5,6 +5,7 @@ const TitleLogo = styled.div`
   display: inline-block;
   cursor: pointer;
   margin: 2.5rem 5rem 4rem 3rem;
+  border: 2px solid red;
 `;
 
 const TicketLinkLogo = () => {
