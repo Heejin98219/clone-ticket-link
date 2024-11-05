@@ -40,6 +40,7 @@ const KORBtnSubUl = styled.ul`
   color: #aaa;
   font-weight: bold;
   background: white;
+  z-index: 1000;
   ${({ isVisible }) => (isVisible ? "display: block;" : "display: none;")}
 
   & :hover {
