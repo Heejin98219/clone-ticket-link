@@ -49,7 +49,7 @@ const SnsIconDiv = styled.a`
 const SnsIcons = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 270px;
+  width: 267px;
   margin-top: 200px;
   cursor: pointer;
 `;

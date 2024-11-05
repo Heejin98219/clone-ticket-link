@@ -13,13 +13,15 @@ const MakeDivPlaceCenter = styled.div`
 
 const App = () => {
   return (
-    <MakeDivPlaceCenter>
+    <div>
       <TopMenuBar />
-      <TicketLinkLogo />
-      <OpenedTicketList />
-      <AutoScrollUp />
-      <Footer />
-    </MakeDivPlaceCenter>
+      <MakeDivPlaceCenter>
+        <TicketLinkLogo />
+        <OpenedTicketList />
+        <AutoScrollUp />
+        <Footer />
+      </MakeDivPlaceCenter>
+    </div>
   );
 };
 

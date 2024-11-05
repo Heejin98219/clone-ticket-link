@@ -26,7 +26,7 @@ const ShowAll = styled.div`
 
 // 이미지
 const TicketImg = styled.img`
-  width: 210px;
+  width: 213px;
   height: 290px;
 `;
 
