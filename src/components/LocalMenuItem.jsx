@@ -50,7 +50,7 @@ const KORBtnSubUl = styled.ul`
 `;
 
 // KOR btn의 서브메뉴 한 개
-const KORBtnSubLi = styled.li`
+export const KORBtnSubLi = styled.li`
   padding: 3px 11px 5px 10px;
   &:first-child:hover {
     border-top-left-radius: 3px;
@@ -109,9 +109,21 @@ const LocalMenuItem = () => {
             &nbsp;KOR&nbsp;▼
             {localMenu && (
               <KORBtnSubUl isVisible={localMenu}>
-                <KORBtnSubLi>ENG</KORBtnSubLi>
-                <KORBtnSubLi>JPN</KORBtnSubLi>
-                <KORBtnSubLi>CHN</KORBtnSubLi>
+                <KORBtnSubLi>
+                  <ApplyInLinkTag to="https://www.ticketlink.co.kr/global/en">
+                    ENG
+                  </ApplyInLinkTag>
+                </KORBtnSubLi>
+                <KORBtnSubLi>
+                  <ApplyInLinkTag to="https://www.ticketlink.co.kr/global/ja">
+                    JPN
+                  </ApplyInLinkTag>
+                </KORBtnSubLi>
+                <KORBtnSubLi>
+                  <ApplyInLinkTag to="https://www.ticketlink.co.kr/global/zh">
+                    CHN
+                  </ApplyInLinkTag>
+                </KORBtnSubLi>
               </KORBtnSubUl>
             )}
           </KORBtn>
