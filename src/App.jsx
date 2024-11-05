@@ -3,7 +3,8 @@ import OpenedTicketList from "./components/OpenedTicketList";
 import AutoScrollUp from "./components/AutoScrollUp";
 import TicketLinkLogo from "./components/TicketLinkLogo";
 import styled from "styled-components";
-import TopMenuBar from "./components/TopMenuBar";
+import LocalMenuItem from "./components/LocalMenuItem";
+import { BrowserRouter } from "react-router-dom";
 
 // 모든 컴포넌트 중앙 정렬
 const MakeDivPlaceCenter = styled.div`
@@ -13,15 +14,17 @@ const MakeDivPlaceCenter = styled.div`
 
 const App = () => {
   return (
-    <div>
-      <TopMenuBar />
-      <MakeDivPlaceCenter>
-        <TicketLinkLogo />
-        <OpenedTicketList />
-        <AutoScrollUp />
-        <Footer />
-      </MakeDivPlaceCenter>
-    </div>
+    <BrowserRouter>
+      <div>
+        <LocalMenuItem />
+        <MakeDivPlaceCenter>
+          <TicketLinkLogo />
+          <OpenedTicketList />
+          <AutoScrollUp />
+          <Footer />
+        </MakeDivPlaceCenter>
+      </div>
+    </BrowserRouter>
   );
 };
 
