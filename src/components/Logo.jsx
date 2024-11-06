@@ -7,7 +7,7 @@ const TitleLogo = styled.div`
   margin: 2.5rem 5rem 4rem 3rem;
 `;
 
-const TicketLinkLogo = () => {
+const Logo = () => {
   return (
     <>
       <div
@@ -59,4 +59,4 @@ const TicketLinkLogo = () => {
   );
 };
 
-export default TicketLinkLogo;
+export default Logo;

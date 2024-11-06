@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // 상단 바
 const TopBar = styled.div`
@@ -129,9 +129,29 @@ const LocalMenuItem = () => {
           </KORBtn>
         </KORBtnUl>
         <RightMenus>
-          <RightMenuBtn>로그인</RightMenuBtn>
+          <RightMenuBtn
+            onClick={() =>
+              window.open(
+                "/login",
+                "popupWindow",
+                "width=600,height=400,resizable=yes,scrollbars=yes"
+              )
+            }
+          >
+            로그인
+          </RightMenuBtn>
           <RightMenuBtn>예매확인/취소</RightMenuBtn>
-          <RightMenuBtn>회원가입</RightMenuBtn>
+          <RightMenuBtn
+            onClick={() =>
+              window.open(
+                "/join",
+                "popupWindow",
+                "width=600,height=400,resizable=yes,scrollbars=yes"
+              )
+            }
+          >
+            회원가입
+          </RightMenuBtn>
           <RightMenuBtn>
             <ApplyInLinkTag to="https://www.ticketlink.co.kr/help/main">
               고객센터
