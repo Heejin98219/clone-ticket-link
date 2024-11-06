@@ -16,7 +16,7 @@ const Logo = () => {
         }}
       >
         <TitleLogo>
-          <img src="/image/TicketLinkImg.png" />
+          <img src="/image/ticketLinkImg.png" />
         </TitleLogo>
         {/* 검색 tbx, 검색 btn*/}
         <div

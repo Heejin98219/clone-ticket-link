@@ -162,7 +162,43 @@ const LocalMenuItem = () => {
               PAYCO
             </ApplyPAYCOInLinkTag>
           </RightPAYCOBTn>
-          <RightMenuBtn>관계사&nbsp;▼</RightMenuBtn>
+          <RightMenuBtn>
+            관계사&nbsp;▼
+            <ul
+              style={{
+                position: "relative",
+                top: "10px",
+                border: "2px solid black",
+              }}
+            >
+              <li>
+                <div
+                  style={{
+                    display: "inline-block",
+                    border: "2px solid black",
+                    width: "25px",
+                    height: "15px",
+                  }}
+                >
+                  <img
+                    src="/image/BugsMusicImg.png"
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                </div>
+              </li>
+              <li>
+                <div></div>
+              </li>
+              <li>
+                <div></div>
+              </li>
+              <li>
+                <div></div>
+              </li>
+            </ul>
+          </RightMenuBtn>
         </RightMenus>
       </TopMenuDiv>
     </TopBar>
