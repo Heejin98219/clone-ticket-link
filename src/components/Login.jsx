@@ -64,7 +64,7 @@ const OtherLoginServices = styled.li`
   display: inline-block;
 `;
 
-// 비밀번호 tbx에서 Enter 키가 눌리면 로그인 버튼으로 포커스 이동
+// 비밀번호 tbx에서 Enter키가 눌리면 로그인 버튼으로 포커스 이동
 const ApplyInPwBtn = (e) => {
   if (e.key === "Enter") {
     document.getElementById("idIsLoginBtn").focus();

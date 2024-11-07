@@ -134,7 +134,7 @@ const LocalMenuItem = () => {
               window.open(
                 "/login",
                 "popupWindow",
-                "width=600,height=400,resizable=yes,scrollbars=yes"
+                "width=600,height=550,resizable=yes,scrollbars=yes"
               )
             }
           >
@@ -146,7 +146,7 @@ const LocalMenuItem = () => {
               window.open(
                 "/join",
                 "popupWindow",
-                "width=600,height=400,resizable=yes,scrollbars=yes"
+                "width=600,height=550,resizable=yes,scrollbars=yes"
               )
             }
           >
