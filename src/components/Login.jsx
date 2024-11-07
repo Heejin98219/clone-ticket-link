@@ -57,12 +57,14 @@ const OtherLoginServicesUl = styled.ul`
   cursor: pointer;
 `;
 
-// 아이디 찾기 (li),
-// 비밀번호 찾기 (li),
-// 회원가입 (li)
+// 아이디 찾기,
+// 비밀번호 찾기,
+// 회원가입
 const OtherLoginServices = styled.li`
   display: inline-block;
 `;
+
+//
 
 const Login = () => {
   const navigate = useNavigate();
@@ -72,7 +74,7 @@ const Login = () => {
       <br />
       <IdTbx type="text" placeholder="아이디를 입력해주세요"></IdTbx>
       <br />
-      <PwTbx type="text" placeholder="비밀번호를 입력해주세요"></PwTbx>
+      <PwTbx type="password" placeholder="비밀번호를 입력해주세요"></PwTbx>
       <br />
       <LoginBtn>로그인</LoginBtn>
       <br />

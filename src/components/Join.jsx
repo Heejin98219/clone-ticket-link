@@ -82,7 +82,15 @@ const Join = () => {
         <br />
         <EmailTbx type="email" placeholder="이메일을 입력해주세요"></EmailTbx>
         <br />
-        <InfoTbx type="text" placeholder="비밀번호를 입력해주세요"></InfoTbx>
+        <InfoTbx
+          type="password"
+          placeholder="비밀번호를 입력해주세요"
+        ></InfoTbx>
+        <br />
+        <InfoTbx
+          type="password"
+          placeholder="비밀번호를 다시 입력해주세요"
+        ></InfoTbx>
         <br />
         <InfoTbx type="text" placeholder="이름을 입력해주세요"></InfoTbx>
         <br />

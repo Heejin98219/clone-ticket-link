@@ -1,7 +1,7 @@
 import Footer from "./components/CopyRightAndSns";
 import OpenedTicketList from "./components/OpenedTicketList";
 import AutoScrollUp from "./components/AutoScrollUp";
-import Logo from "./components/Logo";
+import LogoAndSearchInput from "./components/LogoAndSearchInput";
 import styled from "styled-components";
 import LocalMenuItem from "./components/LocalMenuItem";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -26,7 +26,7 @@ const App = () => {
             <div>
               <LocalMenuItem />
               <MakeDivPlaceCenter>
-                <Logo />
+                <LogoAndSearchInput />
                 <OpenedTicketList />
                 <AutoScrollUp />
                 <Footer />
