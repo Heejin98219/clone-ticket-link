@@ -64,7 +64,22 @@ const OtherLoginServices = styled.li`
   display: inline-block;
 `;
 
-//
+// 비밀번호 tbx에서 Enter 키가 눌리면 로그인 버튼으로 포커스 이동
+const ApplyInPwBtn = (e) => {
+  if (e.key === "Enter") {
+    document.getElementById("idIsLoginBtn").focus();
+
+    // 공백 입력 제한
+    const idTbx = document.getElementById("idIsIdTbx").value;
+    const pwTbx = document.getElementById("idIsPwTbx").value;
+
+    if (idTbx.includes(" ") || pwTbx.includes(" ")) {
+      alert("아이디 혹은 비밀번호를 다시 확인해 주세요");
+      document.getElementById("idIsIdTbx").value = "";
+      document.getElementById("idIsPwTbx").value = "";
+    }
+  }
+};
 
 const Login = () => {
   const navigate = useNavigate();
@@ -72,11 +87,20 @@ const Login = () => {
     <WholeDiv>
       <StringLOGIN>LOGIN</StringLOGIN>
       <br />
-      <IdTbx type="text" placeholder="아이디를 입력해주세요"></IdTbx>
+      <IdTbx
+        type="text"
+        placeholder="아이디를 입력해주세요"
+        id="idIsIdTbx"
+      ></IdTbx>
       <br />
-      <PwTbx type="password" placeholder="비밀번호를 입력해주세요"></PwTbx>
+      <PwTbx
+        type="password"
+        placeholder="비밀번호를 입력해주세요"
+        id="idIsPwTbx"
+        onKeyDown={ApplyInPwBtn}
+      ></PwTbx>
       <br />
-      <LoginBtn>로그인</LoginBtn>
+      <LoginBtn id="idIsLoginBtn">로그인</LoginBtn>
       <br />
       <OtherLoginServicesUl>
         <OtherLoginServices onClick={() => navigate("/findid")}>

@@ -92,9 +92,9 @@ const FindPw = () => {
           ></UserInfoTbx>
 
           <PwTbx
-            onKeyDown={ApplyInPwBtn}
             type="password"
             placeholder="비밀번호를 입력해주세요"
+            onKeyDown={ApplyInPwBtn}
             id="idIsPwReName"
           ></PwTbx>
         </div>
