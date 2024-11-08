@@ -105,20 +105,30 @@ const JoinBtn = styled.button`
   margin-top: 15px;
 `;
 
-// 비밀번호 힌트 tbx에서 엔터치면
-// 가입 btn으로 포커스
-const ApplyInJoinBTn = (e) => {
+// 비밀번호 재입력 tbx에서 Enter 키가 눌리면
+// 변경 btn로 포커스 이동
+const ApplyInPwBtn = (e) => {
+  const pwTbx1 = document.getElementById("idIsPw").value;
+  const pwTbx2 = document.getElementById("idIsPwReWrite").value;
+
   if (e.key === "Enter") {
-    // document.getElementById("idIsJoinBtn").focus();
+    if (pwTbx1.includes(" ") || pwTbx2.includes(" ")) {
+      alert("비밀번호에는 공백이 포함될 수 없습니다.");
+
+      // 공란 전환
+      document.getElementById("idIsPw").value = "";
+      document.getElementById("idIsPwReWrite").value = "";
+    } else if (pwTbx1 !== pwTbx2) {
+      alert("비밀번호를 확인해 주세요");
+
+      // 공란 전환
+      document.getElementById("idIsPw").value = "";
+      document.getElementById("idIsPwReWrite").value = "";
+    } else {
+      document.getElementById("idIsJoinBtn").focus();
+    }
   }
 };
-
-// 비밀번호 및 비밀번호 확인 문자열 일치 여부 확인
-// 이름 tbx에 기호, 특수 문자, 숫자 입력 제한
-const CheckFormAvailable = document.getElementById("idIsJoinBtn");
-if (CheckFormAvailable.focus()) {
-  alert("버튼에 포커스");
-}
 
 const Join = () => {
   return (
@@ -151,18 +161,6 @@ const Join = () => {
 
         <br />
         <InfoTbx
-          type="password"
-          placeholder="비밀번호를 입력해주세요"
-          id="idIsPw"
-        ></InfoTbx>
-        <br />
-        <InfoTbx
-          type="password"
-          placeholder="비밀번호를 다시 입력해주세요"
-          id="idIsPwReName"
-        ></InfoTbx>
-        <br />
-        <InfoTbx
           type="text"
           placeholder="이름을 입력해주세요"
           maxLength={4}
@@ -171,7 +169,18 @@ const Join = () => {
         <InfoTbx
           type="text"
           placeholder="비밀번호 힌트를 입력해주세요"
-          onKeyDown={ApplyInJoinBTn}
+        ></InfoTbx>
+        <InfoTbx
+          type="password"
+          placeholder="비밀번호를 입력해주세요"
+          id="idIsPw"
+        ></InfoTbx>
+        <br />
+        <InfoTbx
+          type="password"
+          placeholder="비밀번호를 다시 입력해주세요"
+          id="idIsPwReWrite"
+          onKeyDown={ApplyInPwBtn}
         ></InfoTbx>
         <br />
         <JoinBtn id="idIsJoinBtn">가입</JoinBtn>

@@ -48,7 +48,7 @@ const ChangePwBtn = styled.button`
 // 비밀번호 tbx에서 Enter 키가 눌리면 변경 버튼으로 포커스 이동
 const ApplyInPwBtn = (e) => {
   const pwTbx1 = document.getElementById("idIsPw").value;
-  const pwTbx2 = document.getElementById("idIsPwReName").value;
+  const pwTbx2 = document.getElementById("idIsPwReWrite").value;
 
   if (e.key === "Enter") {
     if (pwTbx1.includes(" ") || pwTbx2.includes(" ")) {
@@ -56,13 +56,13 @@ const ApplyInPwBtn = (e) => {
 
       // 공란 전환
       document.getElementById("idIsPw").value = "";
-      document.getElementById("idIsPwReName").value = "";
+      document.getElementById("idIsPwReWrite").value = "";
     } else if (pwTbx1 !== pwTbx2) {
       alert("비밀번호를 확인해 주세요");
 
       // 공란 전환
       document.getElementById("idIsPw").value = "";
-      document.getElementById("idIsPwReName").value = "";
+      document.getElementById("idIsPwReWrite").value = "";
     } else {
       document.getElementById("idIsChangePwBtn").focus();
     }
@@ -95,7 +95,7 @@ const FindPw = () => {
             type="password"
             placeholder="비밀번호를 입력해주세요"
             onKeyDown={ApplyInPwBtn}
-            id="idIsPwReName"
+            id="idIsPwReWrite"
           ></PwTbx>
         </div>
         <ChangePwBtn id="idIsChangePwBtn">변경</ChangePwBtn>
