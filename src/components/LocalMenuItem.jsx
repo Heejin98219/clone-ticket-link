@@ -134,7 +134,7 @@ const LocalMenuItem = () => {
               window.open(
                 "/login",
                 "popupWindow",
-                "width=600,height=550,resizable=yes,scrollbars=yes"
+                "width=500,height=550,resizable=yes,scrollbars=yes"
               )
             }
           >
@@ -146,7 +146,7 @@ const LocalMenuItem = () => {
               window.open(
                 "/join",
                 "popupWindow",
-                "width=600,height=550,resizable=yes,scrollbars=yes"
+                "width=500,height=550,resizable=yes,scrollbars=yes"
               )
             }
           >
@@ -164,7 +164,7 @@ const LocalMenuItem = () => {
           </RightPAYCOBTn>
           <RightMenuBtn>
             관계사&nbsp;▼
-            <ul
+            {/* <ul
               style={{
                 position: "relative",
                 top: "10px",
@@ -197,7 +197,7 @@ const LocalMenuItem = () => {
               <li>
                 <div></div>
               </li>
-            </ul>
+            </ul> */}
           </RightMenuBtn>
         </RightMenus>
       </TopMenuDiv>
