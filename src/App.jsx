@@ -10,6 +10,7 @@ import Join from "./components/Join";
 import FindId from "./components/FindId";
 import FindPw from "./components/FindPw";
 import FetchData from "./components/FetchData";
+import AddData from "./components/AddData";
 
 // 모든 컴포넌트 중앙 정렬
 const MakeDivPlaceCenter = styled.div`
@@ -32,6 +33,7 @@ const App = () => {
                 <AutoScrollUp />
                 {/* 지우기 */}
                 <FetchData />
+                <AddData />
                 <Footer />
               </MakeDivPlaceCenter>
             </div>

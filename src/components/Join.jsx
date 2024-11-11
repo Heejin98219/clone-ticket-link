@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 // 전체를 감싸는 div
@@ -66,7 +67,7 @@ const EmailCbox = styled.option`
   text-align: left;
 `;
 
-// 골뱅이(@) 문구
+// 앳(@) 문구
 const LetterAt = styled.div`
   display: flex;
   align-items: center;
@@ -173,7 +174,6 @@ const Join = () => {
         <InfoTbx
           type="password"
           placeholder="비밀번호를 입력해주세요"
-          id="idIsPw"
         ></InfoTbx>
         <br />
         <InfoTbx
