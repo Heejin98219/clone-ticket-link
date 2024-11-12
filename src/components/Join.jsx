@@ -1,5 +1,5 @@
-import { useState } from "react";
 import styled from "styled-components";
+import supabaseInitializing from "../../supabaseInitializing";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`
@@ -36,7 +36,7 @@ const IdUseEmailSentence = styled.span`
 
 // 이메일 tbx 2개,
 // 이메일 cbox,
-// '@' 감싸는 div
+// at(@) 감싸는 div
 const EmailWholeDiv = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -130,7 +130,6 @@ const ApplyInPwBtn = (e) => {
     }
   }
 };
-
 const Join = () => {
   return (
     <WholeDiv>
