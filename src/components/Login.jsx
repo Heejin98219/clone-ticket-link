@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -82,6 +83,21 @@ const ApplyInPwBtn = (e) => {
 };
 
 const Login = () => {
+  const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
+
+  // 아이디 변경
+  const idClick = (e) => {
+    setId(e.target.value);
+    console.log(e.target.value);
+  };
+
+  // 비밀번호 변경
+  const pwClick = (e) => {
+    setPw(e.target.value);
+    console.log(e.target.value);
+  };
+
   const navigate = useNavigate();
   return (
     <WholeDiv>
@@ -91,6 +107,7 @@ const Login = () => {
         type="text"
         placeholder="아이디를 입력해주세요"
         id="idIsIdTbx"
+        onChange={(e) => idClick(e)}
       ></IdTbx>
       <br />
       <PwTbx
@@ -98,6 +115,7 @@ const Login = () => {
         placeholder="비밀번호를 입력해주세요"
         id="idIsPwTbx"
         onKeyDown={ApplyInPwBtn}
+        onChange={pwClick}
       ></PwTbx>
       <br />
       <LoginBtn id="idIsLoginBtn">로그인</LoginBtn>

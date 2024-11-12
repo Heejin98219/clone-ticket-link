@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import supabaseInitializing from "../../supabaseInitializing";
+// import supabaseInitializing from "../../supabaseInitializing";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`

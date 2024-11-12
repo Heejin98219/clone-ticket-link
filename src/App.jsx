@@ -9,7 +9,6 @@ import Login from "./components/Login";
 import Join from "./components/Join";
 import FindId from "./components/FindId";
 import FindPw from "./components/FindPw";
-import FetchData from "./components/FetchData";
 import AddData from "./components/AddData";
 
 // 모든 컴포넌트 중앙 정렬
@@ -31,8 +30,6 @@ const App = () => {
                 <LogoAndSearchInput />
                 <OpenedTicketList />
                 <AutoScrollUp />
-                {/* 지우기 */}
-                <FetchData />
                 <AddData />
                 <Footer />
               </MakeDivPlaceCenter>
