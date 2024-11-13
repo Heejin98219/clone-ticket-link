@@ -1,5 +1,6 @@
 import styled from "styled-components";
-// import supabaseInitializing from "../../supabaseInitializing";
+import { useState } from "react";
+import supabase from "../../supabaseClient";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`
@@ -14,7 +15,7 @@ const StringJOIN = styled.div`
   margin: 5rem 0rem 2.5rem 0rem;
 `;
 
-// '회원 정보~', 문구
+// '회원 정보~' 문구
 // '아이디는 이메일~' 문구를 감싸는 div
 const AboutJoin = styled.div`
   line-height: 35px;
@@ -108,29 +109,40 @@ const JoinBtn = styled.button`
 
 // 비밀번호 재입력 tbx에서 Enter 키가 눌리면
 // 변경 btn로 포커스 이동
-const ApplyInPwBtn = (e) => {
-  const pwTbx1 = document.getElementById("idIsPw").value;
-  const pwTbx2 = document.getElementById("idIsPwReWrite").value;
 
-  if (e.key === "Enter") {
-    if (pwTbx1.includes(" ") || pwTbx2.includes(" ")) {
-      alert("비밀번호에는 공백이 포함될 수 없습니다.");
-
-      // 공란 전환
-      document.getElementById("idIsPw").value = "";
-      document.getElementById("idIsPwReWrite").value = "";
-    } else if (pwTbx1 !== pwTbx2) {
-      alert("비밀번호를 확인해 주세요");
-
-      // 공란 전환
-      document.getElementById("idIsPw").value = "";
-      document.getElementById("idIsPwReWrite").value = "";
-    } else {
-      document.getElementById("idIsJoinBtn").focus();
-    }
-  }
-};
 const Join = () => {
+  const [FrontEmail, setFrontEmail] = useState("");
+  const [name, setName] = useState("");
+  const [hint, setHint] = useState("");
+  const [pw, setPw] = useState("");
+  const [BackEmail, setBackEmail] = useState("@naver.com");
+
+  // 이메일 뒷자리 설정 함수
+  const handleEmailChange = (e) => {
+    console.log(e.target.value);
+    setBackEmail(e.target.value);
+  };
+  const JoinTicketLink = async () => {
+    // console.log("이메일 앞부분 > " + FrontEmail);
+    // console.log("이메일 뒷부분 > " + BackEmail);
+    const { data, error } = await supabase.auth.signUp({
+      email: FrontEmail + BackEmail, // state로 관리된 이메일
+
+      password: pw, // state로 관리된 비밀번호
+      options: {
+        data: {
+          hint: hint,
+          name: name,
+        },
+      },
+    });
+    if (error) {
+      console.error("Sign up error:", error.message);
+    } else {
+      console.log("Sign up success:", data);
+    }
+  };
+
   return (
     <WholeDiv>
       <StringJOIN>JOIN</StringJOIN>
@@ -143,46 +155,51 @@ const Join = () => {
       </AboutJoin>
       <div>
         <br />
-
         <EmailWholeDiv>
-          <EmailTbx type="text"></EmailTbx>
-
-          <EmailSelBox>
-            <EmailCbox>@naver.com</EmailCbox>
-            <EmailCbox>@daum.net</EmailCbox>
-            <EmailCbox>@gmail.com</EmailCbox>
-            <EmailCbox>@kakao.com</EmailCbox>
-            <EmailCbox>@hanmail.net</EmailCbox>
-            <option>직접 입력</option>
+          <EmailTbx
+            type="text"
+            onChange={(e) => setFrontEmail(e.target.value)}
+          />
+          <EmailSelBox onChange={handleEmailChange}>
+            <EmailCbox value="@naver.com">@naver.com</EmailCbox>
+            <EmailCbox value="@daum.net">@daum.net</EmailCbox>
+            <EmailCbox value="@gmail.com">@gmail.com</EmailCbox>
+            <EmailCbox value="@kakao.com">@kakao.com</EmailCbox>
+            <EmailCbox value="@hanmail.net">@hanmail.net</EmailCbox>
+            <option value="">직접 입력</option>
           </EmailSelBox>
           <LetterAt>@</LetterAt>
-          <EmailAfterAtTbx type="text"></EmailAfterAtTbx>
+          <EmailAfterAtTbx type="text" />
         </EmailWholeDiv>
-
         <br />
         <InfoTbx
           type="text"
           placeholder="이름을 입력해주세요"
           maxLength={4}
-        ></InfoTbx>
+          onChange={(e) => setName(e.target.value)}
+        />
         <br />
         <InfoTbx
           type="text"
           placeholder="비밀번호 힌트를 입력해주세요"
-        ></InfoTbx>
+          onChange={(e) => setHint(e.target.value)}
+        />
         <InfoTbx
           type="password"
           placeholder="비밀번호를 입력해주세요"
-        ></InfoTbx>
+          onChange={(e) => setPw(e.target.value)}
+        />
         <br />
         <InfoTbx
           type="password"
           placeholder="비밀번호를 다시 입력해주세요"
           id="idIsPwReWrite"
-          onKeyDown={ApplyInPwBtn}
-        ></InfoTbx>
+          // onKeyDown={ApplyInPwBtn}
+        />
         <br />
-        <JoinBtn id="idIsJoinBtn">가입</JoinBtn>
+        <JoinBtn id="idIsJoinBtn" onClick={JoinTicketLink}>
+          가입
+        </JoinBtn>
       </div>
     </WholeDiv>
   );

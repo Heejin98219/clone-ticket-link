@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { createClient } from "@supabase/supabase-js";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`
@@ -81,21 +82,37 @@ const ApplyInPwBtn = (e) => {
     }
   }
 };
-
 const Login = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
-  // 아이디 변경
-  const idClick = (e) => {
+  // 아이디 onClick
+  const OnChangeId = (e) => {
     setId(e.target.value);
-    console.log(e.target.value);
   };
 
-  // 비밀번호 변경
-  const pwClick = (e) => {
+  // 비밀번호 onClick
+  const OnChangePw = (e) => {
     setPw(e.target.value);
-    console.log(e.target.value);
+  };
+
+  // 로그인 정보 확인
+  const SUPER_BASE_URL = "https://mbycektjatnzabdwdjgn.supabase.co";
+  const SUPER_BASE_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ieWNla3RqYXRuemFiZHdkamduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk3NTg4NTQsImV4cCI6MjA0NTMzNDg1NH0.XAZ34-d7Iu4x-KteSBABNqZ8ScCpo_CYxfvFrfeepCQ";
+  const supabase = createClient(SUPER_BASE_URL, SUPER_BASE_KEY);
+
+  const signInUser = async () => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: id,
+      password: pw,
+    });
+
+    if (error) {
+      console.error("로그인 실패 ", error.message);
+    } else {
+      console.log("로그인 성공 ", data);
+    }
   };
 
   const navigate = useNavigate();
@@ -107,7 +124,7 @@ const Login = () => {
         type="text"
         placeholder="아이디를 입력해주세요"
         id="idIsIdTbx"
-        onChange={(e) => idClick(e)}
+        onChange={(e) => OnChangeId(e)}
       ></IdTbx>
       <br />
       <PwTbx
@@ -115,10 +132,12 @@ const Login = () => {
         placeholder="비밀번호를 입력해주세요"
         id="idIsPwTbx"
         onKeyDown={ApplyInPwBtn}
-        onChange={pwClick}
+        onChange={OnChangePw}
       ></PwTbx>
       <br />
-      <LoginBtn id="idIsLoginBtn">로그인</LoginBtn>
+      <LoginBtn id="idIsLoginBtn" onClick={signInUser}>
+        로그인
+      </LoginBtn>
       <br />
       <OtherLoginServicesUl>
         <OtherLoginServices onClick={() => navigate("/findid")}>
