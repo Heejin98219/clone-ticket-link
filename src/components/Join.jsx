@@ -150,22 +150,10 @@ const Join = () => {
     }
   };
 
-  // 3. 비밀번호 재입력 tbx
-  const PasswordReMixture = (e) => {
-    if (e.key === "Enter") {
-      const newRePw = e.target.value;
-      const pwReRex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-      if (!pwRex.test(newRePw)) {
-        // 유효성 검사
-        alert("8자 이상 15자 이하인 영문자, 숫자, 특수 문자로 정해주세요");
-      }
-    }
-  };
-
-  // 4. 비밀번호/ 비밀번호 재입력 비교
-  if (pw !== pwRe) {
-    alert("비밀번호를 다시 확인해주세요");
-  }
+  // 3. 비밀번호/ 비밀번호 재입력 비교
+  // if (pw !== pwRe) {
+  //   alert("비밀번호를 다시 확인해주세요");
+  // }
 
   // 회원가입 함수
   const JoinTicketLink = async () => {
@@ -216,7 +204,7 @@ const Join = () => {
         </EmailWholeDiv>
         <br />
         <InfoTbx
-          type="password"
+          type="text"
           placeholder="이름을 입력해주세요"
           id="idIsNameTbx"
           value={name}
@@ -234,6 +222,7 @@ const Join = () => {
           placeholder="비밀번호를 입력해주세요"
           id="idIsReTbx"
           onChange={(e) => setPw(e.target.value)}
+          onKeyDown={PasswordMixture}
         />
         <br />
         <InfoTbx
