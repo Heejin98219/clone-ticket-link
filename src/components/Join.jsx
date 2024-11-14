@@ -107,28 +107,71 @@ const JoinBtn = styled.button`
   margin-top: 15px;
 `;
 
-// 비밀번호 재입력 tbx에서 Enter 키가 눌리면
-// 변경 btn로 포커스 이동
-
 const Join = () => {
-  const [FrontEmail, setFrontEmail] = useState("");
+  const [frontEmail, setFrontEmail] = useState("");
   const [name, setName] = useState("");
   const [hint, setHint] = useState("");
   const [pw, setPw] = useState("");
-  const [BackEmail, setBackEmail] = useState("@naver.com");
+  const [pwRe, setPwRe] = useState("");
+  const [backEmail, setBackEmail] = useState("@naver.com");
 
   // 이메일 뒷자리 설정 함수
-  const handleEmailChange = (e) => {
-    console.log(e.target.value);
+  const ChangeBackEmail = (e) => {
     setBackEmail(e.target.value);
   };
-  const JoinTicketLink = async () => {
-    // console.log("이메일 앞부분 > " + FrontEmail);
-    // console.log("이메일 뒷부분 > " + BackEmail);
-    const { data, error } = await supabase.auth.signUp({
-      email: FrontEmail + BackEmail, // state로 관리된 이메일
 
-      password: pw, // state로 관리된 비밀번호
+  // 유효성 검사
+  // 1. 이름 tbx
+  // 이름에 숫자, 기호 입력 제한
+  const PreventNumbersAndSymbols = (e) => {
+    const newName = e.target.value;
+
+    if (/\d/.test(newName)) {
+      alert("이름을 입력해주세요");
+      setName("");
+    } else if (/[^a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ]/.test(newName)) {
+      alert("이름을 입력해주세요");
+      setName("");
+    } else {
+      setName(newName);
+    }
+  };
+
+  // 2. 비밀번호 tbx
+  // 영문, 숫자 및 특수기호 조합 8자리 이상
+  const PasswordMixture = (e) => {
+    if (e.key === "Enter") {
+      const newPw = e.target.value;
+      const pwRex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+      if (!pwRex.test(newPw)) {
+        // 유효성 검사
+        alert("8자 이상 15자 이하인 영문자, 숫자, 특수 문자로 정해주세요");
+      }
+    }
+  };
+
+  // 3. 비밀번호 재입력 tbx
+  const PasswordReMixture = (e) => {
+    if (e.key === "Enter") {
+      const newRePw = e.target.value;
+      const pwReRex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+      if (!pwRex.test(newRePw)) {
+        // 유효성 검사
+        alert("8자 이상 15자 이하인 영문자, 숫자, 특수 문자로 정해주세요");
+      }
+    }
+  };
+
+  // 4. 비밀번호/ 비밀번호 재입력 비교
+  if (pw !== pwRe) {
+    alert("비밀번호를 다시 확인해주세요");
+  }
+
+  // 회원가입 함수
+  const JoinTicketLink = async () => {
+    const { data, error } = await supabase.auth.signUp({
+      email: frontEmail + backEmail,
+      password: pw,
       options: {
         data: {
           hint: hint,
@@ -160,7 +203,7 @@ const Join = () => {
             type="text"
             onChange={(e) => setFrontEmail(e.target.value)}
           />
-          <EmailSelBox onChange={handleEmailChange}>
+          <EmailSelBox onChange={ChangeBackEmail}>
             <EmailCbox value="@naver.com">@naver.com</EmailCbox>
             <EmailCbox value="@daum.net">@daum.net</EmailCbox>
             <EmailCbox value="@gmail.com">@gmail.com</EmailCbox>
@@ -173,33 +216,34 @@ const Join = () => {
         </EmailWholeDiv>
         <br />
         <InfoTbx
-          type="text"
+          type="password"
           placeholder="이름을 입력해주세요"
-          maxLength={4}
-          onChange={(e) => setName(e.target.value)}
+          id="idIsNameTbx"
+          value={name}
+          onChange={PreventNumbersAndSymbols}
         />
         <br />
         <InfoTbx
-          type="text"
+          type="password"
           placeholder="비밀번호 힌트를 입력해주세요"
+          id="idIsHintTbx"
           onChange={(e) => setHint(e.target.value)}
         />
         <InfoTbx
           type="password"
           placeholder="비밀번호를 입력해주세요"
+          id="idIsReTbx"
           onChange={(e) => setPw(e.target.value)}
         />
         <br />
         <InfoTbx
           type="password"
           placeholder="비밀번호를 다시 입력해주세요"
-          id="idIsPwReWrite"
-          // onKeyDown={ApplyInPwBtn}
+          id="idIsPwReTbx"
+          onChange={(e) => setPwRe(e.target.value)}
         />
         <br />
-        <JoinBtn id="idIsJoinBtn" onClick={JoinTicketLink}>
-          가입
-        </JoinBtn>
+        <JoinBtn onClick={JoinTicketLink}>가입</JoinBtn>
       </div>
     </WholeDiv>
   );
