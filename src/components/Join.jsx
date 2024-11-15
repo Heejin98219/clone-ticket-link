@@ -135,10 +135,20 @@ const Join = () => {
     }
   };
 
+  // 공란 전환 함수
+  const MakeInputClear = () => {
+    setFrontEmail("");
+    setName("");
+    setHint("");
+    setPw("");
+    setPwRe("");
+  };
+
   // 회원가입 함수
   const JoinTicketLink = async () => {
     if (pw !== pwRe) {
       alert("비밀번호를 다시 확인해 주세요");
+      return;
     }
 
     const { data, error } = await supabase.auth.signUp({
@@ -153,8 +163,12 @@ const Join = () => {
     });
     if (error) {
       console.error("Sign up error:", error.message);
+      alert("회원가입에 실패하였습니다");
+      MakeInputClear();
     } else {
       console.log("Sign up success:", data);
+      alert("회원가입에 성공하였습니다");
+      MakeInputClear();
     }
   };
 
@@ -179,6 +193,7 @@ const Join = () => {
         <EmailWholeDiv>
           <EmailTbx
             type="text"
+            value={frontEmail}
             onChange={(e) => setFrontEmail(e.target.value)}
           />
           <EmailSelBox onChange={ChangeBackEmail}>
@@ -202,8 +217,9 @@ const Join = () => {
         />
         <br />
         <InfoTbx
-          type="password"
+          type="text"
           placeholder="비밀번호 힌트를 입력해주세요"
+          value={hint}
           id="idIsHintTbx"
           onChange={(e) => setHint(e.target.value)}
         />
@@ -211,6 +227,7 @@ const Join = () => {
           type="password"
           placeholder="비밀번호를 입력해주세요"
           id="idIsReTbx"
+          value={pw}
           onChange={(e) => setPw(e.target.value)}
         />
         <br />
@@ -218,6 +235,7 @@ const Join = () => {
           type="password"
           placeholder="비밀번호를 다시 입력해주세요"
           id="idIsPwReTbx"
+          value={pwRe}
           onChange={(e) => setPwRe(e.target.value)}
           onKeyDown={EnterJoinTicketLink}
         />

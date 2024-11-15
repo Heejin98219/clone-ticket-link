@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { createClient } from "@supabase/supabase-js";
+import supabase from "../../supabaseClient";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`
@@ -96,7 +96,21 @@ const Login = () => {
     setPw(e.target.value);
   };
 
-  // 로그인 정보 확인
+  // 로그인 함수
+  const LoginTicketLink = async () => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: id,
+      password: pw,
+    });
+
+    if (error) {
+      console.error("Sign up error:", error.message);
+      alert("회원가입에 실패하였습니다\n개발팀에 문의해 주세요");
+    } else {
+      console.log("Sign up success:", data);
+      alert("회원가입에 성공하였습니다");
+    }
+  };
 
   const navigate = useNavigate();
   return (
@@ -118,7 +132,7 @@ const Login = () => {
         onChange={OnChangePw}
       ></PwTbx>
       <br />
-      <LoginBtn id="idIsLoginBtn" onClick={signInUser}>
+      <LoginBtn id="idIsLoginBtn" onClick={LoginTicketLink}>
         로그인
       </LoginBtn>
       <br />
