@@ -168,6 +168,10 @@ const Join = () => {
     } else {
       console.log("Sign up success:", data);
       alert("회원가입에 성공하였습니다");
+      const { error } = await supabase.from("Users").insert({
+        email: data.user.email,
+        name: name,
+      });
       MakeInputClear();
     }
   };

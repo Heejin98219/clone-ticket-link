@@ -1,4 +1,6 @@
+import { useState } from "react";
 import styled from "styled-components";
+import supabase from "../../supabaseClient";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`
@@ -45,61 +47,61 @@ const FindIdBtn = styled.button`
   font-weight: bold;
 `;
 
-// 이름 tbx에 기호, 특수문자, 숫자 입력 제한
-const ApplyInUserNameTbx = (e) => {
-  const RegexSymbols = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
-  const Number = /[0-9]/g;
-  const RegexSpace = /\s/g;
-
-  if (e.key !== "Enter") {
-    if (RegexSymbols.test(e.key)) {
-      alert("기호 및 특수문자는 입력할 수 없습니다.");
-      e.preventDefault();
-      // 공란 전환
-
-      document.getElementById("idIsUserName").value = "";
-    } else if (Number.test(e.key)) {
-      alert("숫자는 입력할 수 없습니다.");
-      e.preventDefault();
-
-      // 공란 전환
-      document.getElementById("idIsUserName").value = "";
-    } else if (RegexSpace.test(e.key)) {
-      alert("빈 칸이 입력되었습니다.");
-      e.preventDefault();
-
-      // 공란 전환
-      document.getElementById("idIsUserName").value = "";
-    }
-  }
-};
-
 // 비밀번호 힌트 tbx에서 Enter 키가 눌리면 찾기 버튼으로 포커스 이동
-const ApplyInPwHintTbx = (e) => {
-  if (e.key === "Enter") {
-    document.getElementById("idIsFindIdBTn").focus();
-  }
-};
 
 const FindId = () => {
+  const [name, setName] = useState("");
+  const [hint, setHint] = useState("");
+
+  // 이름 tbx에 숫자, 기호 입력 제한 함수
+  const PreventNumbersAndSymbols = (e) => {
+    const newName = e.target.value;
+
+    if (/\d/.test(newName)) {
+      alert("이름을 입력해주세요");
+      setName("");
+    } else if (/[^a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ]/.test(newName)) {
+      alert("이름을 입력해주세요");
+      setName("");
+    } else {
+      setName(newName);
+    }
+  };
+
+  // 공란 전환 함수
+  const MakeInputClear = () => {
+    setName("");
+    setHint("");
+  };
+
+  // 아이디 조회 함수 (upsert)
+  const FindIdInTicketLink = async () => {
+    const response = await supabase.auth.admin.listUsers();
+    console.log(response);
+    // .from() // 테이블명
+    // .select("Email") // '*'는 모든 컬럼 '컬럼명'은 그 컬럼/
+    // .eq("column", name); // eq("컬럼명", 찾고자 하는 값)
+  };
+
   return (
     <WholeDiv>
       <StringFindId>아이디 찾기</StringFindId>
       <div>
         <UserNameTbx
-          onKeyDown={ApplyInUserNameTbx}
           type="text"
           placeholder="이름을 입력해주세요"
-          maxLength={4}
           id="idIsUserName"
+          value={name}
         />
         <PwHintTbx
-          onKeyDown={ApplyInPwHintTbx}
           type="text"
           placeholder="비밀번호 힌트를 입력해주세요"
+          value={hint}
         />
       </div>
-      <FindIdBtn id="idIsFindIdBTn">찾기</FindIdBtn>
+      <FindIdBtn id="idIsFindIdBTn" onClick={FindIdInTicketLink}>
+        찾기
+      </FindIdBtn>
     </WholeDiv>
   );
 };
