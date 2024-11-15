@@ -47,8 +47,7 @@ const FindIdBtn = styled.button`
   font-weight: bold;
 `;
 
-// 비밀번호 힌트 tbx에서 Enter 키가 눌리면 찾기 버튼으로 포커스 이동
-
+// 아이디 찾기 컴포넌트
 const FindId = () => {
   const [name, setName] = useState("");
   const [hint, setHint] = useState("");
@@ -74,13 +73,29 @@ const FindId = () => {
     setHint("");
   };
 
-  // 아이디 조회 함수 (upsert)
+  // 아이디 조회 함수
   const FindIdInTicketLink = async () => {
-    const response = await supabase.auth.admin.listUsers();
-    console.log(response);
-    // .from() // 테이블명
-    // .select("Email") // '*'는 모든 컬럼 '컬럼명'은 그 컬럼/
-    // .eq("column", name); // eq("컬럼명", 찾고자 하는 값)
+    const { data, error } = await supabase
+      .from("auth.users") // 테이블명
+      .select("email") // 조회할 컬럼
+      .eq("name", name) // 조건 1
+      .eq("hint", hint); // 조건 2
+    console.log("name은 → ", name); // 성공
+    console.log("hint은 → ", hint); // 데이터 안 들어옴
+    if (error) {
+      alert("없는 정보입니다");
+      MakeInputClear();
+    } else {
+      alert(`찾은 아이디: ${data[0].email}`);
+      MakeInputClear();
+    }
+  };
+
+  // 아이디 찾기 버튼 enter
+  const EnterFindIdInTicketLink = (e) => {
+    if (e.key === "Enter") {
+      FindIdInTicketLink();
+    }
   };
 
   return (
@@ -92,14 +107,18 @@ const FindId = () => {
           placeholder="이름을 입력해주세요"
           id="idIsUserName"
           value={name}
+          onChange={(e) => PreventNumbersAndSymbols(e)}
         />
         <PwHintTbx
           type="text"
           placeholder="비밀번호 힌트를 입력해주세요"
+          id="idIsPwHintTbx"
           value={hint}
+          onChange={(e) => setHint(e.target.value)}
+          onKeyDown={(e) => EnterFindIdInTicketLink(e)}
         />
       </div>
-      <FindIdBtn id="idIsFindIdBTn" onClick={FindIdInTicketLink}>
+      <FindIdBtn id="idIsFindIdBtn" onClick={FindIdInTicketLink}>
         찾기
       </FindIdBtn>
     </WholeDiv>

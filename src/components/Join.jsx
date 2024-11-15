@@ -176,6 +176,7 @@ const Join = () => {
     }
   };
 
+  // 회원가입 버튼 enter
   const EnterJoinTicketLink = (e) => {
     if (e.key === "Enter") {
       JoinTicketLink();
