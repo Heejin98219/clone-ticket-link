@@ -97,23 +97,6 @@ const Login = () => {
   };
 
   // 로그인 정보 확인
-  const SUPER_BASE_URL = "https://mbycektjatnzabdwdjgn.supabase.co";
-  const SUPER_BASE_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ieWNla3RqYXRuemFiZHdkamduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk3NTg4NTQsImV4cCI6MjA0NTMzNDg1NH0.XAZ34-d7Iu4x-KteSBABNqZ8ScCpo_CYxfvFrfeepCQ";
-  const supabase = createClient(SUPER_BASE_URL, SUPER_BASE_KEY);
-
-  const signInUser = async () => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: id,
-      password: pw,
-    });
-
-    if (error) {
-      console.error("로그인 실패 ", error.message);
-    } else {
-      console.log("로그인 성공 ", data);
-    }
-  };
 
   const navigate = useNavigate();
   return (

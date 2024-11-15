@@ -120,9 +120,7 @@ const Join = () => {
     setBackEmail(e.target.value);
   };
 
-  // 유효성 검사
-  // 1. 이름 tbx
-  // 이름에 숫자, 기호 입력 제한
+  // 이름 tbx에 숫자, 기호 입력 제한 함수
   const PreventNumbersAndSymbols = (e) => {
     const newName = e.target.value;
 
@@ -137,22 +135,12 @@ const Join = () => {
     }
   };
 
-  // 2. 비밀번호 tbx
-  // 영문, 숫자 및 특수기호 조합 8자리 이상
-  const PasswordMixture = (e) => {
-    if (e.key === "Enter") {
-      const newPw = e.target.value;
-      const pwRex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-      if (!pwRex.test(newPw)) {
-        // 유효성 검사
-        // 8자 이상 15자 이하인 영문자, 숫자, 특수 문자로 정해주세요"
-        alert("");
-      }
-    }
-  };
-
   // 회원가입 함수
   const JoinTicketLink = async () => {
+    if (pw !== pwRe) {
+      alert("비밀번호를 다시 확인해 주세요");
+    }
+
     const { data, error } = await supabase.auth.signUp({
       email: frontEmail + backEmail,
       password: pw,
@@ -167,6 +155,12 @@ const Join = () => {
       console.error("Sign up error:", error.message);
     } else {
       console.log("Sign up success:", data);
+    }
+  };
+
+  const EnterJoinTicketLink = (e) => {
+    if (e.key === "Enter") {
+      JoinTicketLink(); // Enter를 누르면 JoinTicketLink 함수 호출
     }
   };
 
@@ -218,7 +212,6 @@ const Join = () => {
           placeholder="비밀번호를 입력해주세요"
           id="idIsReTbx"
           onChange={(e) => setPw(e.target.value)}
-          onKeyDown={PasswordMixture}
         />
         <br />
         <InfoTbx
@@ -226,9 +219,12 @@ const Join = () => {
           placeholder="비밀번호를 다시 입력해주세요"
           id="idIsPwReTbx"
           onChange={(e) => setPwRe(e.target.value)}
+          onKeyDown={EnterJoinTicketLink}
         />
-        <br />
-        <JoinBtn onClick={JoinTicketLink}>가입</JoinBtn>
+
+        <JoinBtn id="idIsJoinBtn" onClick={JoinTicketLink}>
+          가입
+        </JoinBtn>
       </div>
     </WholeDiv>
   );
