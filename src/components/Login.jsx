@@ -66,34 +66,14 @@ const OtherLoginServices = styled.li`
   display: inline-block;
 `;
 
-// 비밀번호 tbx에서 Enter키가 눌리면 로그인 버튼으로 포커스 이동
-const ApplyInPwBtn = (e) => {
-  if (e.key === "Enter") {
-    document.getElementById("idIsLoginBtn").focus();
-
-    // 공백 입력 제한
-    const idTbx = document.getElementById("idIsIdTbx").value;
-    const pwTbx = document.getElementById("idIsPwTbx").value;
-
-    if (idTbx.includes(" ") || pwTbx.includes(" ")) {
-      alert("아이디 혹은 비밀번호를 다시 확인해 주세요");
-      document.getElementById("idIsIdTbx").value = "";
-      document.getElementById("idIsPwTbx").value = "";
-    }
-  }
-};
 const Login = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
-  // 아이디 onClick
-  const OnChangeId = (e) => {
-    setId(e.target.value);
-  };
-
-  // 비밀번호 onClick
-  const OnChangePw = (e) => {
-    setPw(e.target.value);
+  // 공란 전환 함수
+  const MakeInputClear = () => {
+    setId("");
+    setPw("");
   };
 
   // 로그인 함수
@@ -105,10 +85,16 @@ const Login = () => {
 
     if (error) {
       console.error("Sign up error:", error.message);
-      alert("회원가입에 실패하였습니다\n개발팀에 문의해 주세요");
+      alert("아이디와 비밀번호를 다시 확인해 주세요");
+      MakeInputClear();
     } else {
       console.log("Sign up success:", data);
-      alert("회원가입에 성공하였습니다");
+    }
+  };
+
+  const EnterLoginTicketLink = (e) => {
+    if (e.key === "Enter") {
+      LoginTicketLink();
     }
   };
 
@@ -119,17 +105,19 @@ const Login = () => {
       <br />
       <IdTbx
         type="text"
+        value={id}
         placeholder="아이디를 입력해주세요"
         id="idIsIdTbx"
-        onChange={(e) => OnChangeId(e)}
+        onChange={(e) => setId(e.target.value)}
       ></IdTbx>
       <br />
       <PwTbx
         type="password"
+        value={pw}
         placeholder="비밀번호를 입력해주세요"
         id="idIsPwTbx"
-        onKeyDown={ApplyInPwBtn}
-        onChange={OnChangePw}
+        onKeyDown={EnterLoginTicketLink}
+        onChange={(e) => setPw(e.target.value)}
       ></PwTbx>
       <br />
       <LoginBtn id="idIsLoginBtn" onClick={LoginTicketLink}>

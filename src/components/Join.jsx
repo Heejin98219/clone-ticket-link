@@ -174,7 +174,7 @@ const Join = () => {
 
   const EnterJoinTicketLink = (e) => {
     if (e.key === "Enter") {
-      JoinTicketLink(); // Enter를 누르면 JoinTicketLink 함수 호출
+      JoinTicketLink();
     }
   };
 
