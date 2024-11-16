@@ -156,11 +156,12 @@ const Join = () => {
       password: pw,
       options: {
         data: {
-          hint: hint,
+          passwordHint: hint,
           name: name,
         },
       },
     });
+
     if (error) {
       console.error("Sign up error:", error.message);
       alert("회원가입에 실패하였습니다");
@@ -171,6 +172,7 @@ const Join = () => {
       const { error } = await supabase.from("Users").insert({
         email: data.user.email,
         name: name,
+        passwordHint: hint,
       });
       MakeInputClear();
     }
