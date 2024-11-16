@@ -76,10 +76,10 @@ const FindId = () => {
   // 아이디 조회 함수
   const FindIdInTicketLink = async () => {
     const { data, error } = await supabase
-      .from("auth.users") // 테이블명
+      .from("Users") // 테이블명
       .select("email") // 조회할 컬럼
       .eq("name", name) // 조건 1
-      .eq("hint", hint); // 조건 2
+      .eq("passwordHint", hint); // 조건 2
     console.log("name은 → ", name); // 성공
     console.log("hint은 → ", hint); // 데이터 안 들어옴
     if (error) {
