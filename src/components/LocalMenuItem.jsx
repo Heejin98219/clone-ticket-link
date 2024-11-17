@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // 상단 바
 const TopBar = styled.div`
@@ -65,8 +65,8 @@ export const KORBtnSubLi = styled.li`
 // 우측 메뉴 전체 div
 const RightMenus = styled.ul`
   display: flex;
-  width: 33%;
-  justify-content: space-evenly;
+  width: 37%;
+  justify-content: space-between;
   cursor: pointer;
   font-size: 11px;
   margin-top: 7px;
@@ -162,43 +162,7 @@ const LocalMenuItem = () => {
               PAYCO
             </ApplyPAYCOInLinkTag>
           </RightPAYCOBTn>
-          <RightMenuBtn>
-            관계사&nbsp;▼
-            {/* <ul
-              style={{
-                position: "relative",
-                top: "10px",
-                border: "2px solid black",
-              }}
-            >
-              <li>
-                <div
-                  style={{
-                    display: "inline-block",
-                    border: "2px solid black",
-                    width: "25px",
-                    height: "15px",
-                  }}
-                >
-                  <img
-                    src="/image/BugsMusicImg.png"
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                </div>
-              </li>
-              <li>
-                <div></div>
-              </li>
-              <li>
-                <div></div>
-              </li>
-              <li>
-                <div></div>
-              </li>
-            </ul> */}
-          </RightMenuBtn>
+          <RightMenuBtn>관계사&nbsp;▼</RightMenuBtn>
         </RightMenus>
       </TopMenuDiv>
     </TopBar>

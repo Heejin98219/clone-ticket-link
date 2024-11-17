@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 // 전체를 감싸는 div
@@ -45,31 +46,37 @@ const ChangePwBtn = styled.button`
   font-weight: bold;
 `;
 
-// 비밀번호 tbx에서 Enter 키가 눌리면 변경 버튼으로 포커스 이동
-const ApplyInPwBtn = (e) => {
-  const pwTbx1 = document.getElementById("idIsPw").value;
-  const pwTbx2 = document.getElementById("idIsPwReWrite").value;
-
-  if (e.key === "Enter") {
-    if (pwTbx1.includes(" ") || pwTbx2.includes(" ")) {
-      alert("비밀번호에는 공백이 포함될 수 없습니다.");
-
-      // 공란 전환
-      document.getElementById("idIsPw").value = "";
-      document.getElementById("idIsPwReWrite").value = "";
-    } else if (pwTbx1 !== pwTbx2) {
-      alert("비밀번호를 확인해 주세요");
-
-      // 공란 전환
-      document.getElementById("idIsPw").value = "";
-      document.getElementById("idIsPwReWrite").value = "";
-    } else {
-      document.getElementById("idIsChangePwBtn").focus();
-    }
-  }
-};
-
 const FindPw = () => {
+  const [email, setEmail] = useState("");
+  const [hint, setHint] = useState("");
+  const [pw, setPw] = useState("");
+  const [pwRe, setPwRe] = useState("");
+
+  // 공란 전환 함수
+  const MakeInputClear = () => {
+    setEmail("");
+    setHint("");
+    setPw("");
+    setPwRe("");
+  };
+
+  // 비밀번호 찾기 (사실상 변경) 함수
+  // 비밀번호는 암호화 되어서 저장되고
+  // 암호화로 인해 저장값이 달라서 중복되도 괜찮음
+  const FindPwInTicketLink = async () => {
+    const { data, error } = await supabase
+      .from("Users") // 비밀번호 저장할 테이블
+      .upsert(
+        {
+          id: 42, // 고유 식별자
+          handle: "saoirse", // 중복 판단
+          display_name: "Saoirse", // 단순 데이터로 중복 여부 판단 없이 업데이트 가능
+        },
+        { onConflict: "handle" } // 특정 컬럼의 중복 여부를 기준으로 업데이트하거나 새로 삽입하는 로직을 결정
+      )
+      .select();
+  };
+
   return (
     <div>
       <WholeDiv>
@@ -79,23 +86,26 @@ const FindPw = () => {
           <UserInfoTbx
             type="text"
             placeholder="아이디(이메일 주소)를 입력해주세요"
+            value={email}
           ></UserInfoTbx>
           <UserInfoTbx
             type="text"
             placeholder="비밀번호 힌트를 입력해주세요"
+            value={hint}
           ></UserInfoTbx>
 
           <UserInfoTbx
             type="password"
             placeholder="비밀번호를 입력해주세요"
             id="idIsPw"
+            value={pw}
           ></UserInfoTbx>
 
           <PwTbx
             type="password"
             placeholder="비밀번호를 입력해주세요"
-            onKeyDown={ApplyInPwBtn}
             id="idIsPwReWrite"
+            value={pwRe}
           ></PwTbx>
         </div>
         <ChangePwBtn id="idIsChangePwBtn">변경</ChangePwBtn>

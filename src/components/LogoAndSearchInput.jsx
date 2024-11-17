@@ -28,6 +28,7 @@ const SearchDiv = styled.div`
   width: 380px;
   height: 45px;
   border-radius: 15px;
+  z-index: 900;
 `;
 
 // 검색 tbx
@@ -35,14 +36,9 @@ const SearchTbx = styled.input`
   width: 300px;
   height: 35px;
   border-radius: 10px;
-  /* border: none;
   font-size: 18px;
-  &:focus {
-    border: 3px solid transparent;
-    &:active {
-      border: 3px solid transparent;
-    }
-  } */
+  outline: none;
+  border: none;
 `;
 
 const LogoAndSearchInput = () => {
@@ -64,7 +60,13 @@ const LogoAndSearchInput = () => {
             id="idIsSearchBox"
             onClick={MakeBorderNone}
           ></SearchTbx>
-          <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl" />
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            size="2xl"
+            style={{
+              cursor: "pointer",
+            }}
+          />
         </SearchDiv>
       </WholeDiv>
     </>

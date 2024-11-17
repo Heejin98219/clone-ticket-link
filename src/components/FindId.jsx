@@ -86,7 +86,7 @@ const FindId = () => {
       alert("없는 정보입니다");
       MakeInputClear();
     } else {
-      alert(`찾은 아이디: ${data[0].email}`);
+      alert(`회원님의 아이디는 ${data[0].email} 입니다`);
       MakeInputClear();
     }
   };
