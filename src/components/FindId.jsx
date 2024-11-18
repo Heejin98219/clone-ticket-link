@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import supabase from "../../supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`
@@ -51,6 +52,7 @@ const FindIdBtn = styled.button`
 const FindId = () => {
   const [name, setName] = useState("");
   const [hint, setHint] = useState("");
+  const navigate = useNavigate();
 
   // 이름 tbx에 숫자, 기호 입력 제한 함수
   const PreventNumbersAndSymbols = (e) => {
@@ -80,14 +82,19 @@ const FindId = () => {
       .select("email") // 조회할 컬럼
       .eq("name", name) // 조건 1
       .eq("passwordHint", hint); // 조건 2
-    console.log("name은 → ", name); // 성공
-    console.log("hint은 → ", hint); // 데이터 안 들어옴
     if (error) {
       alert("없는 정보입니다");
       MakeInputClear();
     } else {
-      alert(`회원님의 아이디는 ${data[0].email} 입니다`);
+      const userEmail = data[0].email;
+      // alert(`회원님의 아이디는 ${data[0].email} 입니다`);
+      navigate("/showid", { state: { email: userEmail } });
       MakeInputClear();
+      window.open(
+        "/showid",
+        "popupWindow",
+        "width=300,height=150,resizable=yes,scrollbars=yes"
+      );
     }
   };
 

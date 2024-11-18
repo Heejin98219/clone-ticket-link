@@ -42,11 +42,6 @@ const SearchTbx = styled.input`
 `;
 
 const LogoAndSearchInput = () => {
-  const MakeBorderNone = () => {
-    document.getElementById("idIsSearchBox").style.border =
-      "2px solid transparent";
-  };
-
   return (
     <>
       <WholeDiv>
@@ -58,8 +53,7 @@ const LogoAndSearchInput = () => {
             type="text"
             placeholder="검색어를 입력해주세요"
             id="idIsSearchBox"
-            onClick={MakeBorderNone}
-          ></SearchTbx>
+          />
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             size="2xl"

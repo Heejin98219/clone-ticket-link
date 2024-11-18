@@ -10,6 +10,7 @@ import Join from "./components/Join";
 import FindId from "./components/FindId";
 import FindPw from "./components/FindPw";
 import AddData from "./components/AddData";
+import ShowId from "./components/ShowId";
 
 // 모든 컴포넌트 중앙 정렬
 const MakeDivPlaceCenter = styled.div`
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/join" element={<Join />} />
         <Route path="/findid" element={<FindId />} />
         <Route path="/findpw" element={<FindPw />} />
+        <Route path="/showid" element={<ShowId />} />
       </Routes>
     </BrowserRouter>
   );
