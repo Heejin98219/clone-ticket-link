@@ -1,25 +1,47 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ShowId = () => {
   const location = useLocation();
   const userId = location.state?.email;
+  const navigate = useNavigate();
+
   return (
-    <div
-      style={{
-        position: "relative",
-        border: "3px solid red",
-      }}
-    >
-      <div
+    <div>
+      <h1
         style={{
           textAlign: "center",
-          fontSize: "40px",
+          fontSize: "44px",
+          marginTop: "3rem",
         }}
       >
-        회원님의 아이디는
+        아이디는
+      </h1>
+      <br />
+      <p
+        style={{
+          fontSize: "44px",
+          margin: "2rem 0 4rem 0rem",
+          textAlign: "center",
+          color: "red",
+          fontWeight: "bold",
+        }}
+      >
         {userId}
-      </div>
-      <div>입니다</div>
+      </p>
+
+      <ul
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "200px",
+          textAlign: "center",
+          margin: "0 auto",
+          cursor: "pointer",
+        }}
+      >
+        <li onClick={() => navigate("/login")}>로그인</li>
+        <li onClick={() => navigate("/findpw")}>비밀번호 찾기</li>
+      </ul>
     </div>
   );
 };

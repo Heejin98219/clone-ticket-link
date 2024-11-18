@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`
@@ -42,6 +44,11 @@ const SearchTbx = styled.input`
 `;
 
 const LogoAndSearchInput = () => {
+  const [searchWord, setSearchWord] = useState("");
+  const [result, setResult] = useState([]);
+
+  const BASE_URL = "http://kopis.or.kr/openApi/restful";
+
   return (
     <>
       <WholeDiv>
@@ -53,6 +60,8 @@ const LogoAndSearchInput = () => {
             type="text"
             placeholder="검색어를 입력해주세요"
             id="idIsSearchBox"
+            value={searchWord}
+            onChange={(e) => setSearchWord(e.target.value)}
           />
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
