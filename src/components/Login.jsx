@@ -90,8 +90,7 @@ const Login = () => {
       MakeInputClear();
     } else {
       MakeInputClear();
-      alert("로그인 성공!");
-      setIsModalOpen(false); // 모달 닫기
+      window.close(); // 모달 닫기
     }
   };
 
