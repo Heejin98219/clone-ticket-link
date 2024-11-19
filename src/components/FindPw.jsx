@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import supabase from "../../supabaseClient";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`
@@ -60,21 +61,39 @@ const FindPw = () => {
     setPwRe("");
   };
 
-  // 비밀번호 찾기 (사실상 변경) 함수
-  // 비밀번호는 암호화 되어서 저장되고
-  // 암호화로 인해 저장값이 달라서 중복되도 괜찮음
+  // 비밀번호 변경 로직
   const FindPwInTicketLink = async () => {
-    const { data, error } = await supabase
-      .from("Users") // 비밀번호 저장할 테이블
-      .upsert(
-        {
-          id: 42, // 고유 식별자
-          handle: "saoirse", // 중복 판단
-          display_name: "Saoirse", // 단순 데이터로 중복 여부 판단 없이 업데이트 가능
-        },
-        { onConflict: "handle" } // 특정 컬럼의 중복 여부를 기준으로 업데이트하거나 새로 삽입하는 로직을 결정
-      )
-      .select();
+    // 비밀번호 확인
+    if (pw !== pwRe) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    try {
+      // 비밀번호 업데이트
+      const { data, error } = await supabase.auth.updateUser({
+        password: pw,
+      });
+
+      if (error) {
+        console.error("비밀번호 변경 실패:", error.message);
+        alert("비밀번호 변경에 실패했습니다. 다시 시도해주세요.");
+        return;
+      }
+
+      alert("비밀번호가 성공적으로 변경되었습니다.");
+      MakeInputClear();
+    } catch (err) {
+      console.error("비밀번호 변경 중 오류:", err);
+      alert("알 수 없는 오류가 발생했습니다.");
+    }
+  };
+
+  // 비밀번호 찾기 버튼 enter
+  const EnterFindPwInTicketLink = (e) => {
+    if (e.key === "Enter") {
+      FindPwInTicketLink();
+    }
   };
 
   return (
@@ -87,11 +106,13 @@ const FindPw = () => {
             type="text"
             placeholder="아이디(이메일 주소)를 입력해주세요"
             value={email}
+            onChange={(e) => setEmail(e.target.value)}
           ></UserInfoTbx>
           <UserInfoTbx
             type="text"
             placeholder="비밀번호 힌트를 입력해주세요"
             value={hint}
+            onChange={(e) => setHint(e.target.value)}
           ></UserInfoTbx>
 
           <UserInfoTbx
@@ -99,6 +120,7 @@ const FindPw = () => {
             placeholder="비밀번호를 입력해주세요"
             id="idIsPw"
             value={pw}
+            onChange={(e) => setPw(e.target.value)}
           ></UserInfoTbx>
 
           <PwTbx
@@ -106,6 +128,8 @@ const FindPw = () => {
             placeholder="비밀번호를 입력해주세요"
             id="idIsPwReWrite"
             value={pwRe}
+            onChange={(e) => setPwRe(e.target.value)}
+            onKeyDown={(e) => EnterFindPwInTicketLink(e)}
           ></PwTbx>
         </div>
         <ChangePwBtn id="idIsChangePwBtn">변경</ChangePwBtn>

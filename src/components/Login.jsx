@@ -69,6 +69,7 @@ const OtherLoginServices = styled.li`
 const Login = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(true); // 모달 상태 추가
 
   // 공란 전환 함수
   const MakeInputClear = () => {
@@ -88,7 +89,9 @@ const Login = () => {
       alert("아이디와 비밀번호를 다시 확인해 주세요");
       MakeInputClear();
     } else {
-      console.log("Sign up success:", data);
+      MakeInputClear();
+      alert("로그인 성공!");
+      setIsModalOpen(false); // 모달 닫기
     }
   };
 
@@ -100,42 +103,44 @@ const Login = () => {
 
   const navigate = useNavigate();
   return (
-    <WholeDiv>
-      <StringLOGIN>LOGIN</StringLOGIN>
-      <br />
-      <IdTbx
-        type="text"
-        value={id}
-        placeholder="아이디를 입력해주세요"
-        id="idIsIdTbx"
-        onChange={(e) => setId(e.target.value)}
-      ></IdTbx>
-      <br />
-      <PwTbx
-        type="password"
-        value={pw}
-        placeholder="비밀번호를 입력해주세요"
-        id="idIsPwTbx"
-        onKeyDown={EnterLoginTicketLink}
-        onChange={(e) => setPw(e.target.value)}
-      ></PwTbx>
-      <br />
-      <LoginBtn id="idIsLoginBtn" onClick={LoginTicketLink}>
-        로그인
-      </LoginBtn>
-      <br />
-      <OtherLoginServicesUl>
-        <OtherLoginServices onClick={() => navigate("/findid")}>
-          아이디 찾기
-        </OtherLoginServices>
-        <OtherLoginServices onClick={() => navigate("/findpw")}>
-          비밀번호 찾기
-        </OtherLoginServices>
-        <OtherLoginServices onClick={() => navigate("/join")}>
-          회원 가입
-        </OtherLoginServices>
-      </OtherLoginServicesUl>
-    </WholeDiv>
+    isModalOpen && (
+      <WholeDiv>
+        <StringLOGIN>LOGIN</StringLOGIN>
+        <br />
+        <IdTbx
+          type="text"
+          value={id}
+          placeholder="아이디를 입력해주세요"
+          id="idIsIdTbx"
+          onChange={(e) => setId(e.target.value)}
+        ></IdTbx>
+        <br />
+        <PwTbx
+          type="password"
+          value={pw}
+          placeholder="비밀번호를 입력해주세요"
+          id="idIsPwTbx"
+          onKeyDown={EnterLoginTicketLink}
+          onChange={(e) => setPw(e.target.value)}
+        ></PwTbx>
+        <br />
+        <LoginBtn id="idIsLoginBtn" onClick={LoginTicketLink}>
+          로그인
+        </LoginBtn>
+        <br />
+        <OtherLoginServicesUl>
+          <OtherLoginServices onClick={() => navigate("/findid")}>
+            아이디 찾기
+          </OtherLoginServices>
+          <OtherLoginServices onClick={() => navigate("/findpw")}>
+            비밀번호 찾기
+          </OtherLoginServices>
+          <OtherLoginServices onClick={() => navigate("/join")}>
+            회원 가입
+          </OtherLoginServices>
+        </OtherLoginServicesUl>
+      </WholeDiv>
+    )
   );
 };
 
