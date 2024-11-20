@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 // '티켓오픈', '전체 보기' 텍스트
@@ -61,27 +61,21 @@ const StyledLink = styled(Link)`
 `;
 
 const OpenedTicketList = () => {
-  // const navigate = useNavigate();
   return (
     <div>
       <TicketOpenListTopBar>
-        <TicketOpen>
-          티켓오픈
-          <ShowAll
-            to="#"
-            onClick={(e) => {
-              e.preventDefault(); // 기본 Link 동작 방지
-              window.location.href =
-                "https://www.ticketlink.co.kr/help/notice#TICKET_OPEN";
-            }}
-          >
-            전체보기
-          </ShowAll>
-        </TicketOpen>
+        <TicketOpen>티켓오픈</TicketOpen>
+        <ShowAll
+          to="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href =
+              "https://www.ticketlink.co.kr/help/notice#TICKET_OPEN";
+          }}
+        >
+          전체보기
+        </ShowAll>
       </TicketOpenListTopBar>
-
-      {/* 캐러셀 같이 생긴거 */}
-      <div></div>
 
       <ImgDiv>
         <StyledLink to="https://www.ticketlink.co.kr/product/52808">

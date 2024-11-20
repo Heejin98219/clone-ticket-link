@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import supabase from "../../supabaseClient";
-import LocalMenuItem from "./LocalMenuItem";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`
@@ -71,7 +70,6 @@ const Login = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(true); // 모달 상태 추가
-  const [userId, setUserId] = useState("");
 
   // 공란 전환 함수
   const MakeInputClear = () => {
@@ -91,6 +89,8 @@ const Login = () => {
       alert("아이디와 비밀번호를 다시 확인해 주세요");
       MakeInputClear();
     } else {
+      navigate("/LocalMenuItem", { state: { id } });
+      alert(`${id}님, 환영합니다!`);
       MakeInputClear();
       window.close(); // 모달 닫기
     }
@@ -113,7 +113,6 @@ const Login = () => {
           type="text"
           value={id}
           placeholder="아이디를 입력해주세요"
-          id="idIsIdTbx"
           onChange={(e) => setId(e.target.value)}
         ></IdTbx>
         <br />
@@ -121,7 +120,6 @@ const Login = () => {
           type="password"
           value={pw}
           placeholder="비밀번호를 입력해주세요"
-          id="idIsPwTbx"
           onKeyDown={EnterLoginTicketLink}
           onChange={(e) => setPw(e.target.value)}
         ></PwTbx>
