@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
-import axios from "axios";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`

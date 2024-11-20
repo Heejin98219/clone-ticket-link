@@ -94,21 +94,28 @@ export const ApplyPAYCOInLinkTag = styled(Link)`
   text-decoration: none;
 `;
 
-const LocalMenuItem = () => {
+const LocalMenuItem = ({ LoginedUser }) => {
   const [localMenu, setLocalMenu] = useState(false);
+  // const [LoginedUser, setLoginedUSer] = useState("");
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const ShowLocalMenu = () => {
     setLocalMenu(!localMenu);
   };
 
+  // // 메뉴의 가시성을 토글하는 함수
+  // const toggleMenu = () => {
+  //   setIsMenuVisible((prevState) => !prevState);
+  // };
+
   return (
     <TopBar>
       <TopMenuDiv>
         <KORBtnUl>
-          <KORBtn onClick={(e) => ShowLocalMenu(e)}>
+          <KORBtn onClick={() => ShowLocalMenu()}>
             &nbsp;KOR&nbsp;▼
             {localMenu && (
-              <KORBtnSubUl isVisible={localMenu}>
+              <KORBtnSubUl isVisible={isMenuVisible}>
                 <KORBtnSubLi>
                   <ApplyInLinkTag to="https://www.ticketlink.co.kr/global/en">
                     ENG
@@ -128,6 +135,12 @@ const LocalMenuItem = () => {
             )}
           </KORBtn>
         </KORBtnUl>
+
+        <div>
+          {/* 사용자 이름이 있으면 표시 */}
+          {LoginedUser && <p>환영합니다, {LoginedUser}님!</p>}
+        </div>
+
         <RightMenus>
           <RightMenuBtn
             onClick={() =>

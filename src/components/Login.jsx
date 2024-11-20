@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import supabase from "../../supabaseClient";
+import LocalMenuItem from "./LocalMenuItem";
 
 // 전체를 감싸는 div
 const WholeDiv = styled.div`
@@ -70,6 +71,7 @@ const Login = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(true); // 모달 상태 추가
+  const [userId, setUserId] = useState("");
 
   // 공란 전환 함수
   const MakeInputClear = () => {
@@ -107,6 +109,7 @@ const Login = () => {
         <StringLOGIN>LOGIN</StringLOGIN>
         <br />
         <IdTbx
+          emailPropstoMain={id}
           type="text"
           value={id}
           placeholder="아이디를 입력해주세요"
