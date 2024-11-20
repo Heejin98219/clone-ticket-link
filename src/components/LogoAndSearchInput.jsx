@@ -11,7 +11,7 @@ const WholeDiv = styled.div`
 const TitleLogo = styled.div`
   display: inline-block;
   cursor: pointer;
-  margin: 2.5rem 5rem 4rem 3rem;
+  margin: 3.5rem 5rem 4rem 3rem;
 `;
 
 // 검색 tbx, 검색 btn 감싸는 div

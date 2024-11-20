@@ -1,4 +1,3 @@
-// ImageSlider.js
 import { useState, useEffect } from "react";
 
 const ImageSlider = ({ images }) => {
@@ -12,14 +11,15 @@ const ImageSlider = ({ images }) => {
     return () => clearInterval(interval); // 컴포넌트 언마운트 시 interval 정리
   }, [images.length]);
 
+  console.log(images[currentIndex].src);
   return (
     <div style={{ textAlign: "center", height: "450px" }}>
       <img
-        src={images[currentIndex]}
+        src={images[currentIndex].src}
         alt={`Image ${currentIndex + 1}`}
         style={{
           width: "1390px",
-          height: "450px",
+          height: "490px",
           transition: "0.3s ease",
           cursor: "pointer",
         }}
