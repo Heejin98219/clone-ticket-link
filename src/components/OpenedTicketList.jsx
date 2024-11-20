@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import ImageSlider from "./ImageSlider";
 
 // 스타일 정의
 const TicketOpenListTopBar = styled.div`
@@ -65,7 +66,9 @@ const OpenedTicketList = () => {
     "https://image.toast.com/aaaaab/ticketlink/TKL_6/PC_BigBanner_%EC%9E%AC%EC%B0%AC.jpg",
     "https://image.toast.com/aaaaab/ticketlink/TKL_10/PC_BigBanner_%EC%9C%A0%EC%9A%B0%EB%A6%AC.jpg",
     "https://image.toast.com/aaaaab/ticketlink/TKL_4/PC_BigBanner_2024SMGSHOW%EC%9A%B0%EC%A3%BC%EC%B5%9C%EA%B0%95%EC%87%BC.jpg",
+    "https://image.toast.com/aaaaab/ticketlink/TKL_3/PC_BigBanner_%EA%B4%91%ED%99%94%EB%AC%B8%EC%97%B0%EA%B0%80_%EC%8A%A4%ED%8E%98%EC%85%9C.jpg",
     "https://image.toast.com/aaaaab/ticketlink/TKL_7/PC_BigBanner_%EB%B9%84%EC%97%94%EB%82%981900.jpg",
+    "https://image.toast.com/aaaaab/ticketlink/TKL_9/PC_BigBanner_%EB%AE%A4%EC%A7%80%EC%BB%AC_%ED%81%B4%EB%A1%9C%EB%B2%84_.jpg",
   ]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -87,7 +90,7 @@ const OpenedTicketList = () => {
         >
           전체보기
         </ShowAll>
-        {/* 이미지 Hover 예제 */}
+        {/* 이미지 슬라이더 추가 */}
         <div
           style={{
             textAlign: "center",
@@ -95,16 +98,7 @@ const OpenedTicketList = () => {
             height: "450px",
           }}
         >
-          <img
-            src={images[currentIndex]}
-            alt={`Image ${currentIndex + 1}`}
-            style={{
-              width: "1390px",
-              height: "450px",
-              transition: "0.3s ease",
-            }}
-            onMouseOver={handleMouseOver}
-          />
+          <ImageSlider images={images} />
         </div>
       </TicketOpenListTopBar>
 
